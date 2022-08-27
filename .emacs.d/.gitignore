@@ -1,0 +1,7 @@
+custom.el
+elpa/
+projectile-bookmarks.eld
+transient
+.save-files
+.cache
+.lsp*
