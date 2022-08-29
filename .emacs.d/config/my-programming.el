@@ -33,8 +33,15 @@
   :custom
   (lsp-eldoc-enable-hover nil))
 
+(use-package lsp-ui
+  :ensure t
+  :after (evil lsp-mode)
+  :custom
+  (lsp-ui-sideline-show-diagnostics nil)
+  (lsp-ui-sideline-show-hover nil)
+  (lsp-ui-sideline-show-code-actions nil)
   :config
-  (define-key evil-normal-state-map (kbd "M-.") 'xref-find-definitions))
+  (evil-local-set-key 'normal (kbd "M-.") 'lsp-ui-peek-find-definitions))
 
 (use-package dap-mode
   :after (lsp)
