@@ -7,5 +7,6 @@
 (require 'my-setup)
 (require 'my-environment)
 (require 'my-editor)
+(require 'my-org)
 (require 'my-programming)
 

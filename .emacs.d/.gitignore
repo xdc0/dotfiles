@@ -6,3 +6,6 @@ transient
 .cache
 .lsp*
 network-security.data
+bookmarks
+org-roam.db
+request
