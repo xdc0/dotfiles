@@ -47,6 +47,14 @@
   :after (lsp)
   :ensure t)
 
+(use-package helm-lsp
+  :ensure t
+  :after (lsp-mode evil)
+  :config
+  (evil-define-key 'normal 'lsp-mode (kbd "M-s") 'helm-lsp-global-workspace-symbol)
+  (evil-define-key 'normal 'lsp-mode (kbd "s-<return>") 'helm-lsp-code-actions)
+  (evil-define-key 'normal 'lsp-mode (kbd "M-<f4>") 'helm-lsp-diagnostics))
+
 ;; Tree Sitter
 ;; New generation of programming language syntax highlight features
 (use-package tree-sitter
