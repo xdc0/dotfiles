@@ -30,6 +30,9 @@
   :after (company)
   :ensure t
   :hook ((typescript-mode js-mode) . lsp)
+  :custom
+  (lsp-eldoc-enable-hover nil))
+
   :config
   (define-key evil-normal-state-map (kbd "M-.") 'xref-find-definitions))
 
