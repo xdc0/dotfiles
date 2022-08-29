@@ -53,5 +53,19 @@
   (define-key evil-normal-state-map (kbd "C-p") 'helm-projectile-find-file)
   (define-key evil-normal-state-map (kbd "C-f") 'helm-projectile-rg))
 
+;; Treemacs a file explorer for projects
+(use-package treemacs
+  :ensure t
+  :config)
+
+(use-package treemacs-evil
+  :ensure t
+  :after (treemacs evil))
+
+(use-package treemacs-projectile
+  :ensure t
+  :after (treemacs projectile))
+
+
 
 (provide 'my-environment)

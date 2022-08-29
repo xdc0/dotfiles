@@ -5,6 +5,13 @@
   :config
   (global-company-mode))
 
+;; Flycheck
+;; Better than flymake, supposedly
+(use-package flycheck
+  :ensure t
+  :init
+  (global-flycheck-mode))
+
 ;; Magit
 ;; Tremendously good git client for emacs
 (use-package magit
@@ -13,17 +20,22 @@
   :config
   (define-key evil-normal-state-map (kbd "<f5>") 'magit-status))
 
-;; eglot
-;; Minimal LSP client
-(use-package eglot
+(use-package treemacs-magit
+  :ensure t
+  :after (magit treemacs))
+
+;; lsp-mode
+;; Language Server Protocol mode implementation for emacs
+(use-package lsp-mode
   :after (company)
   :ensure t
-  :hook ((typescript-mode js-mode) . eglot-ensure)
-  :init
-  (setq eglot-confirm-server-initiated-edits nil)
+  :hook ((typescript-mode js-mode) . lsp)
   :config
-  (define-key evil-normal-state-map (kbd "M-.") 'xref-find-definitions)
-  (define-key evil-normal-state-map (kbd "s-<return>") 'eglot-code-actions))
+  (define-key evil-normal-state-map (kbd "M-.") 'xref-find-definitions))
+
+(use-package dap-mode
+  :after (lsp)
+  :ensure t)
 
 ;; Tree Sitter
 ;; New generation of programming language syntax highlight features

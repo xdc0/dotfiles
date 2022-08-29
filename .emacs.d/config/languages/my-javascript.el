@@ -7,10 +7,13 @@
 
 ;; Typescript configuration
 (use-package typescript-mode
+  :ensure t
+  :after (lsp-mode)
   :mode "\\.tsx?\\'"
   :init
   (setq typescript-indent-level 2)
-  :ensure t)
+  :config
+  (setq lsp-clients-typescript-server-args '("--stdio" "--tsserver-log-file" "/tmp/tsserver")))
 
 ;; Helpers to run code quality tools, e.g. prettier
 (use-package apheleia
@@ -18,5 +21,12 @@
   :ensure t
   :config
   (define-key evil-normal-state-map (kbd "M-E") 'apheleia-format-buffer))
+
+;; Debugger
+(use-package dap-node
+  :after (dap-mode)
+  :defer t
+  :config
+  (dap-node-setup))
 
 (provide 'my-javascript)
