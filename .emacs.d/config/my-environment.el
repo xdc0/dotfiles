@@ -5,16 +5,19 @@
 ;; VI emulation package
 (use-package evil
   :ensure t
-  :init
-  (setq evil-want-keybinding nil)
-  (setq evil-undo-system 'undo-redo)
+  :custom
+  (evil-want-keybinding nil)
+  (evil-undo-system 'undo-redo)
   :config
+  (define-key evil-normal-state-map (kbd "M-.") 'xref-find-definitions)
   (evil-mode 1))
 
 ;; Collection of plugins built around evil
 (use-package evil-collection
   :ensure t
   :after (evil)
+  :custom
+  (evil-collection-setup-minibuffer t)
   :config
   (evil-collection-init))
 
@@ -22,16 +25,18 @@
 ;; Multipurpose framework for various packages
 (use-package helm
   :ensure t
+  :custom
+  (helm-completion-style 'helm-fuzzy)
   :init
-  (setq helm-ff-auto-update-initial-value t)
-  (define-key evil-normal-state-map (kbd "C-d") 'helm-buffers-list)
-  (setq completion-styles '(flex)))
+  (define-key evil-normal-state-map (kbd "C-d") 'helm-buffers-list))
 
 ;; plugins for helm
 ;; helm-rg - ripgrep integration
 (use-package helm-rg
+  :ensure t
   :after helm
-  :ensure t)
+  :custom
+  (helm-rg-thing-at-point nil))
 
 ;; Projectile
 ;; Project management package
