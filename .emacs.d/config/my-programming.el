@@ -71,4 +71,9 @@
 ;; Programming languages modules
 (require 'my-javascript)
 
+;; TERRAFORM
+
+(use-package terraform-mode
+  :ensure t)
+
 (provide 'my-programming)
