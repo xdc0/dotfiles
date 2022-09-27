@@ -8,12 +8,9 @@
 ;; Typescript configuration
 (use-package typescript-mode
   :ensure t
-  :after (lsp-mode)
   :mode "\\.tsx?\\'"
   :init
-  (setq typescript-indent-level 2)
-  :config
-  (setq lsp-clients-typescript-server-args '("--stdio" "--tsserver-log-file" "/tmp/tsserver")))
+  (setq typescript-indent-level 2))
 
 ;; Helpers to run code quality tools, e.g. prettier
 (use-package apheleia
@@ -21,14 +18,6 @@
   :ensure t
   :config
   (define-key evil-normal-state-map (kbd "M-E") 'apheleia-format-buffer))
-
-;; Debugger
-;; Note -- Debugger currently uses a deprectated server.
-(use-package dap-node
-  :after (dap-mode)
-  :defer t
-  :config
-  (dap-node-setup))
 
 ;; jest-test-mode
 ;; allow to easily run focused tests
