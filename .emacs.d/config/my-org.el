@@ -26,7 +26,7 @@
         ("DROPPED" . "blue")))
 
 (setq org-todo-keywords
-      '((sequence "TODO(t)" "INPROGRESS(i)" "PR(p)" "STAGING(s)" "|" "DONE(d)")))
+      '((sequence "TODO(t)" "INPROGRESS(i)" "PR(p)" "STAGING(s)" "|" "DONE(d)" "DROPPED(u)")))
 
 (use-package org-roam
   :ensure t
