@@ -15,7 +15,7 @@
   (setq doom-themes-enable-bolt t
 	doom-themes-enable-italic t
 	doom-themes-treemacs-theme "doom-colors")
-  (load-theme 'doom-material-dark t)
+  (load-theme 'doom-material t)
   (doom-themes-visual-bell-config)
   (doom-themes-treemacs-config)
   (doom-themes-org-config))
