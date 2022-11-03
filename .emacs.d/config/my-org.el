@@ -44,6 +44,9 @@
   (require 'org-roam-dailies)
   (org-roam-db-autosync-mode))
 
+;; Configuration for src blocks
+(setq org-edit-src-content-indentation 0)
+(setq org-src-preserve-indentation nil)
 
 (provide 'my-org)
 
