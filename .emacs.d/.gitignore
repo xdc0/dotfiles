@@ -6,6 +6,7 @@ network-security.data
 bookmarks
 org-roam.db
 request
+eln-cache
 
 !.gitignore
 .*
