@@ -36,6 +36,9 @@
 (custom-set-variables
  '(initial-frame-alist (quote ((fullscreen . maximized)))))
 
+;; lower logging for native compilation
+(setq warning-minimum-level :error)
+
 ;; Package repository setup
 (require 'package)
 (add-to-list 'package-archives 
