@@ -1,27 +1,35 @@
 ;; Global configurations of the text editor
 
 ;; Icons
-(use-package all-the-icons
-  :ensure t)
-
-;; Theme
-(use-package color-theme-sanityinc-tomorrow
-  :ensure t)
+(use-package all-the-icons)
 
 (use-package doom-themes
-  :ensure t
   :after (all-the-icons)
-  :config
-  (setq doom-themes-enable-bolt t
-	doom-themes-enable-italic t
-	doom-themes-treemacs-theme "doom-colors")
-  (load-theme 'doom-material t)
+  :custom
+  (doom-themes-enable-bolt t)
+  (doom-themes-enable-italic t)
+  (doom-themes-treemacs-theme "doom-colors")
+  :init
+  (load-theme 'doom-gruvbox-light t)
   (doom-themes-visual-bell-config)
   (doom-themes-treemacs-config)
   (doom-themes-org-config))
 
+(use-package doom-modeline
+  :custom
+  ((doom-modeline-height 15))
+  :init
+  (doom-modeline-mode 1))
+
+(use-package which-key
+  :defer 0
+  :diminish which-key-mode
+  :config
+  (which-key-mode)
+  (setq which-key-idle-delay 1))
+
 ;; Font
-(set-frame-font "JetBrains Mono 13" nil t)
+(set-frame-font "IBM Plex Mono 13" nil t)
 
 ;; Powerline
 (use-package powerline
