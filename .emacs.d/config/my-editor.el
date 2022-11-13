@@ -37,6 +37,10 @@
   :config
   (powerline-center-evil-theme))
 
+;; Spell cheking stuff
+(setq-default ispell-program-name "aspell")
+
+
 ;; Line numbers for buffers containing code
 (add-hook 'prog-mode-hook #'display-line-numbers-mode)
 
