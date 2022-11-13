@@ -1,76 +1,86 @@
 ;; Essential packages used to setup my work environment
 ;; Note: If some of these blocks become too unwieldly, they can be separated to their own files
 
+;; Automatically upgrade packages
+(use-package auto-package-update
+
+  :ensure t
+  :custom
+  (auto-package-update-interval 7)
+  (auto-package-update-prompt-before-update t)
+  (auto-package-update-hide-results t)
+  :config
+  (auto-package-update-maybe)
+  (auto-package-update-at-time "09:00"))
+
+(use-package diminish)
+
+(use-package no-littering
+  :config
+  (setq auto-save-file-name-transforms `((".*" ,(no-littering-expand-var-file-name "auto-save/") t))))
+
 ;; Evil mode
 ;; VI emulation package
 (use-package evil
-  :ensure t
   :custom
   (evil-want-keybinding nil)
   (evil-undo-system 'undo-redo)
   :config
+  (evil-mode 1)
   (define-key evil-normal-state-map (kbd "M-.") 'xref-find-definitions)
-  (evil-mode 1))
+  (evil-set-initial-state 'messages-buffer-mode 'normal)
+  (evil-set-initial-state 'dashboard-mode 'normal))
 
 ;; Collection of plugins built around evil
 (use-package evil-collection
-  :ensure t
   :after (evil)
   :custom
   (evil-collection-setup-minibuffer t)
   :config
   (evil-collection-init))
 
-;; Helm
-;; Multipurpose framework for various packages
-(use-package helm
-  :ensure t
-  :custom
-  (helm-completion-style 'helm-fuzzy)
-  :init
-  (define-key evil-normal-state-map (kbd "C-d") 'helm-buffers-list))
+(use-package ivy
+  :diminish
+  :config
+  (ivy-mode 1))
 
-;; plugins for helm
-;; helm-rg - ripgrep integration
-(use-package helm-rg
-  :ensure t
-  :after helm
-  :custom
-  (helm-rg-thing-at-point nil))
+(use-package ivy-rich
+  :after ivy
+  :init
+  (ivy-rich-mode 1))
+
+(use-package counsel
+  :diminish
+  :init
+  (define-key evil-normal-state-map (kbd "C-d") 'counsel-switch-buffer)
+  (counsel-mode 1))
 
 ;; Projectile
 ;; Project management package
 (use-package projectile
-  :ensure t
-  :after (evil helm)
-  :init
-  (setq projectile-completion-system 'helm)
+  :after (evil ivy)
+  :diminish projectile-mode
+  :custom
+  (projectile-completion-system 'ivy)
+  (projectile-search-path '("~/projects"))
   :config
   (projectile-mode)
-  (define-key evil-normal-state-map (kbd "C-c p") 'helm-projectile-switch-project))
+  (define-key evil-normal-state-map (kbd "C-c p") 'projectile-switch-project))
 
-;; plugins for projectile
-(use-package helm-projectile
-  :ensure t
-  :after (evil helm-rg projectile)
+(use-package counsel-projectile
+  :after projectile
   :config
-  (helm-projectile-on)
-  (define-key evil-normal-state-map (kbd "C-p") 'helm-projectile-find-file)
-  (define-key evil-normal-state-map (kbd "C-f") 'helm-projectile-rg))
+  (counsel-projectile-mode)
+  (define-key evil-normal-state-map (kbd "C-p") 'counsel-projectile-find-file))
 
 ;; Treemacs a file explorer for projects
 (use-package treemacs
-  :ensure t
   :config)
 
 (use-package treemacs-evil
-  :ensure t
   :after (treemacs evil))
 
 (use-package treemacs-projectile
-  :ensure t
   :after (treemacs projectile))
-
-
 
 (provide 'my-environment)

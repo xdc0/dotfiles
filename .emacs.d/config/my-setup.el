@@ -6,7 +6,11 @@
 (menu-bar-mode -1)
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
+(tooltip-mode -1)
+(set-fringe-mode 10)
 (setq ring-bell-function 'ignore)
+
+(column-number-mode)
 
 ;; Backup and auto save files management
 (defvar my-save-files-directory
@@ -18,7 +22,6 @@
       `(("." . ,my-save-files-directory)
 	(,tramp-file-name-regexp nil)))
 (setq auto-save-list-file-prefix (concat my-save-files-directory ".auto-save-"))
-(setq auto-save-file-name-transforms `((".*" ,my-save-files-directory t)))
 
 (setq
  kept-new-versions 10
@@ -39,15 +42,25 @@
 ;; lower logging for native compilation
 (setq warning-minimum-level :error)
 
+;; gc settings
+(setq gc-cons-threshold (* 30 1000 1000))
+
+
 ;; Package repository setup
 (require 'package)
 (add-to-list 'package-archives 
              '("melpa" . "https://melpa.org/packages/") t)
+(add-to-list 'package-archives
+             '("org" . "https://orgmode.org/elpa/") t)
+(add-to-list 'package-archives
+             '("elpa" . "https://elpa.gnu.org/packages/") t)
+
+(package-initialize)
+(unless package-archive-contents (package-refresh-contents))
 
 (unless (package-installed-p 'use-package)
-  (package-refresh-contents)
   (package-install 'use-package))
 
+(setq use-package-always-ensure t)
 
 (provide 'my-setup)
-
