@@ -7,6 +7,8 @@ bookmarks
 org-roam.db
 request
 eln-cache
+var
+async-bytecomp.log
 
 !.gitignore
 .*
