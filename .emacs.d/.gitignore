@@ -10,5 +10,10 @@ eln-cache
 var
 async-bytecomp.log
 
+## Projectile
+projectile.cache
+projects
+
+## ignore all dotfiles, except for gitignore
 !.gitignore
 .*
