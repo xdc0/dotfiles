@@ -53,6 +53,7 @@
   :diminish
   :init
   (define-key evil-normal-state-map (kbd "C-d") 'counsel-switch-buffer)
+  (define-key evil-normal-state-map (kbd "C-f") 'counsel-rg)
   (counsel-mode 1))
 
 ;; Projectile
@@ -62,7 +63,7 @@
   :diminish projectile-mode
   :custom
   (projectile-completion-system 'ivy)
-  (projectile-search-path '("~/projects"))
+  (projectile-project-search-path '("~/projects"))
   :config
   (projectile-mode)
   (define-key evil-normal-state-map (kbd "C-c p") 'projectile-switch-project))
