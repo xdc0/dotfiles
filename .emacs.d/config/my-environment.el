@@ -65,13 +65,15 @@
   (projectile-completion-system 'ivy)
   (projectile-project-search-path '("~/projects"))
   :config
-  (projectile-mode)
-  (define-key evil-normal-state-map (kbd "C-c p") 'projectile-switch-project))
+  (projectile-mode))
 
 (use-package counsel-projectile
   :after projectile
   :config
   (counsel-projectile-mode)
+  (define-key evil-normal-state-map (kbd "C-c p") (lambda ()
+						    (interactive)
+						    (counsel-projectile-switch-project 2)))
   (define-key evil-normal-state-map (kbd "C-p") 'counsel-projectile-find-file))
 
 ;; Treemacs a file explorer for projects
